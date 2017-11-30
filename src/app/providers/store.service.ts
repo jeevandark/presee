@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { Account } from 'app/account';
+
 @Injectable()
 export class StoreService {
     private _activeAccountId: string;
@@ -11,7 +13,7 @@ export class StoreService {
     constructor() {
     }
 
-    get activeAccountId(): any {
+    get activeAccount(): any {
         let retItem: any;
         let activeAccId: string = localStorage.getItem(StoreService.keyActiveAccountId);
         if (activeAccId == null) {
@@ -41,16 +43,34 @@ export class StoreService {
         }
         return retItem;
     }
-    
+
     get accountList(): Array<any> {
         if (this._accountList == null) {
             this.loadAccounts();
         }
         return this._accountList;
     }
-    
+
     get isAccountListEmptyOrNull(): boolean {
         return this._accountList == null || this._accountList.length === 0;
+    }
+
+    createAccount(): Account {
+        let newAcc: Account;
+        let accIsOk: boolean = false;
+        while (!accIsOk) {
+            newAcc = new Account();
+            // make sure that there is no other account in the list with the same uuid:
+            let idxCheck: number = this.accountList.findIndex((chkAcc: Account) => {
+                return chkAcc.id === newAcc.id;
+            });
+            accIsOk = idxCheck < 0;
+            if (accIsOk) {
+                this.accountList.push(newAcc);
+                this.saveAccounts();
+            }
+        }
+        return newAcc;
     }
 
     private loadAccounts(): void {

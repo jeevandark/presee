@@ -1,4 +1,4 @@
-
+import { UUID } from 'angular2-uuid';
 
 export class Account {
     name: string;
@@ -7,8 +7,9 @@ export class Account {
     accountId: string;
 
     private _id: string;
-    
+
     constructor() {
+        this._id = UUID.UUID();
     }
 
     get id(): string {

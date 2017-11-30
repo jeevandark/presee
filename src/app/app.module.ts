@@ -12,19 +12,23 @@ import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { ElectronService } from './providers/electron.service';
+import { StoreService } from 'app/providers/store.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    AppRoutingModule
-  ],
-  providers: [ElectronService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        AppRoutingModule
+    ],
+    providers: [
+        ElectronService,
+        StoreService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

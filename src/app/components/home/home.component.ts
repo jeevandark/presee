@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { StoreService } from 'app/providers/store.service';
+import { Account } from 'app/account';
 
 @Component({
     selector: 'app-home',
@@ -8,14 +9,16 @@ import { StoreService } from 'app/providers/store.service';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    activeAccount: any;
+    activeAccount: Account;
 
-    title = `App works !`;
-
-    constructor(private store: StoreService) { 
+    constructor(private store: StoreService) {
     }
 
     ngOnInit() {
-
+        this.activeAccount = this.store.activeAccount;
+        if (this.activeAccount == null) {
+            this.store.createAccount();
+            this.activeAccount = this.store.activeAccount;
+        }
     }
 }

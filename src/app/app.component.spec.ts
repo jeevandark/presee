@@ -4,21 +4,21 @@ import { AppComponent } from './app.component';
 import { ElectronService } from 'app/providers/electron.service';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-      providers : [
-        ElectronService
-      ],
-      imports: [RouterTestingModule]
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                AppComponent
+            ],
+            providers: [
+                ElectronService
+            ],
+            imports: [RouterTestingModule]
+        }).compileComponents();
+    }));
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+    it('should create the app', async(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
+        expect(app).toBeTruthy();
+    }));
 });
